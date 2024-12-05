@@ -1,15 +1,16 @@
-before running backend:
+prieš paleidžiant backend:
 docker run --name mongodb -p 27017:27017 -v /some/local/folder:/data/db -d mongo
-# or any other way to run mongodb, connection string is set in environment variable
+# arba bet kaip kitaip startuot mongodb
+
 
 backend:
-# starting from project's root folder:
+# pradedant nuo projekto root :
 cd backend // go to folder "backend"
 npm ci
 npm start
 
 frontend:
-# starting from project's root folder:
+# pradedant nuo projekto root :
 cd frontend
 npm ci
 npm run dev
