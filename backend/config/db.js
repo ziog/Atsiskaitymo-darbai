@@ -6,10 +6,10 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB connected');
+    console.log('Prisijungta prie MongoDB'); // Prisijungta prie MongoDB
   } catch (error) {
-    console.error(error);
-    process.exit(1);
+    console.error(error); // Klaida
+    process.exit(1); // Išeina su klaidos kodu
   }
 };
 

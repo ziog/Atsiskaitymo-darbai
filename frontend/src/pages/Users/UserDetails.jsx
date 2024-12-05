@@ -17,13 +17,13 @@ const UserDetails = () => {
         setLoading(false);
       })
       .catch(() => {
-        setError("Failed to fetch user details.");
+        setError("Nepavyko gauti vartotojo duomenų.");
         setLoading(false);
       });
   }, [id]);
 
   if (loading) {
-    return <p>Loading user details...</p>;
+    return <p>Kraunami vartotojo duomenys...</p>;
   }
 
   if (error) {
@@ -31,52 +31,52 @@ const UserDetails = () => {
   }
 
   if (!user) {
-    return <p>User not found.</p>;
+    return <p>Vartotojas nerastas.</p>;
   }
 
   return (
     <div>
-      <h2>User Details</h2>
+      <h2>Vartotojo duomenys</h2>
       <p>
         <strong>ID:</strong> {user._id}
       </p>
       <p>
-        <strong>Name:</strong> {user.name}
+        <strong>Vardas:</strong> {user.name}
       </p>
       <p>
-        <strong>Email:</strong> {user.email}
+        <strong>El. paštas:</strong> {user.email}
       </p>
       <button
         onClick={() => navigate(`/users/${user._id}/edit`)}
         style={{ marginRight: "10px", color: "orange" }}
       >
-        Edit User
+        Redaguoti vartotoją
       </button>
       <button
         onClick={() => navigate(`/users/${user._id}/delete`)}
         style={{ color: "red" }}
       >
-        Delete User
+        Ištrinti vartotoją
       </button>
       <button
         onClick={() => navigate(-1)}
         style={{ marginTop: "10px", color: "blue" }}
       >
-        Go Back
+        Grįžti atgal
       </button>
 
       <hr />
       <div>
-        <h3>Manage Posts for {user.name}</h3>
+        <h3>Tvarkyti {user.name} įrašus</h3>
         <ul>
           <li key="viewallposts">
             <Link to={`posts`} style={{ marginRight: "10px" }}>
-              View All Posts
+              Peržiūrėti visus įrašus
             </Link>
           </li>
           <li key="newpost">
             <Link to={`posts/new?userId=${user._id}`} style={{ color: "green" }}>
-              Add New Post
+              Pridėti naują įrašą
             </Link>
           </li>
         </ul>

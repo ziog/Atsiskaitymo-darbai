@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchPosts } from '../../api/postsApi';
 
 const PostList = () => {
-  const params = useParams(); // User ID
-  const id = params.id
+  const params = useParams(); // Vartotojo ID
+  const id = params.id;
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,17 +17,17 @@ const PostList = () => {
         setLoading(false);
       })
       .catch(() => {
-        setError('Failed to fetch posts.');
+        setError('Nepavyko gauti įrašų.');
         setLoading(false);
       });
   }, [id]);
 
-  if (loading) return <p>Loading posts...</p>;
+  if (loading) return <p>Įrašai įkeliami...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div>
-      <h2>Posts for User {id}</h2>
+      <h2>Įrašai vartotojui {id}</h2>
       {posts.length > 0 ? (
         <ul>
           {posts.map((post) => (
@@ -35,19 +35,19 @@ const PostList = () => {
               <h3>{post.title}</h3>
               <p>{post.body}</p>
               <Link to={`${post._id}`} style={{ marginRight: '10px' }}>
-                View Details
+                Peržiūrėti detales
               </Link>
               <Link to={`${post._id}/edit`} style={{ marginRight: '10px', color: 'orange' }}>
-                Edit
+                Redaguoti
               </Link>
               <Link to={`${post._id}/delete`} style={{ color: 'red' }}>
-                Delete
+                Ištrinti
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No posts found for this user. {id}</p>
+        <p>Šiam vartotojui nerasta įrašų. {id}</p>
       )}
     </div>
   );

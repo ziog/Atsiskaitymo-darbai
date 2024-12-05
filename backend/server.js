@@ -1,34 +1,34 @@
 require('dotenv-defaults').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors middleware
+const cors = require('cors'); // Importuoti cors tarpinius programinius įrankius
 const postRoutes = require('./routes/postRoutes');
-const userRoutes = require('./routes/userRoutes'); // Include user routes as well
+const userRoutes = require('./routes/userRoutes'); // Įtraukti vartotojų maršrutus
 const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT;
 
-// Use morgan for detailed logging
-app.use(morgan('dev')); // 'dev' outputs concise colored logs
+// Naudoti morgan detaliam žurnalo išvedimui
+app.use(morgan('dev')); // 'dev' rodo trumpus spalvotus žurnalus
 
-// Middleware to enable CORS
+// Tarpinis įrankis CORS įjungimui
 app.use(cors());
 
-app.use(express.json()); // To parse JSON request bodies
+app.use(express.json()); // Analizuoti JSON užklausų kūnus
 
-// Connect to MongoDB
+// Prisijungti prie MongoDB
 mongoose.connect('mongodb://localhost:27017/praktinio', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.log('MongoDB connection error:', err));
+}).then(() => console.log('Prisijungta prie MongoDB')) // Prisijungta prie MongoDB
+  .catch(err => console.log('MongoDB prisijungimo klaida:', err)); // MongoDB prisijungimo klaida
 
-// Use post routes
-app.use('/api/posts', postRoutes); // Post routes
-app.use('/api/users', userRoutes); // User routes
+// Naudoti įrašų maršrutus
+app.use('/api/posts', postRoutes); // Įrašų maršrutai
+app.use('/api/users', userRoutes); // Vartotojų maršrutai
 
-// Start the server
+// Paleisti serverį
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Serveris veikia prievade ${PORT}`); // Serveris veikia prievade
 });

@@ -1,70 +1,70 @@
-const User = require('../models/userModel'); // Ensure you're importing the correct model
+const User = require('../models/userModel'); // Įsitikinkite, kad importuojate tinkamą modelį
 
-// Get all users
+// Gauti visus vartotojus
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find(); // Retrieve all users
-    res.status(200).json(users); // Send users data back
+    const users = await User.find(); // Gauti visus vartotojus
+    res.status(200).json(users); // Siųsti vartotojų duomenis atgal
   } catch (error) {
-    res.status(500).json({ message: error.message }); // Handle errors
+    res.status(500).json({ message: error.message }); // Apdoroti klaidas
   }
 };
 
-// Get a single user by ID
+// Gauti vieną vartotoją pagal ID
 const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id); // Retrieve user by ID
+    const user = await User.findById(req.params.id); // Gauti vartotoją pagal ID
     if (!user) {
-      return res.status(404).json({ message: 'User not found' }); // Handle case where user doesn't exist
+      return res.status(404).json({ message: 'Vartotojas nerastas' }); // Tvarkyti atvejį, kai vartotojas neegzistuoja
     }
-    res.status(200).json(user); // Send user data back
+    res.status(200).json(user); // Siųsti vartotojo duomenis atgal
   } catch (error) {
-    res.status(500).json({ message: error.message }); // Handle errors
+    res.status(500).json({ message: error.message }); // Apdoroti klaidas
   }
 };
 
-// Create a new user
+// Sukurti naują vartotoją
 const createUser = async (req, res) => {
-  const { name, email, age } = req.body; // Destructure the incoming user data
+  const { name, email, age } = req.body; // Išskaidyti gaunamus vartotojo duomenis
 
   try {
-    const user = new User({ name, email, age }); // Create a new user instance
-    await user.save(); // Save user to database
-    res.status(201).json(user); // Send the created user back
+    const user = new User({ name, email, age }); // Sukurti naują vartotojo egzempliorių
+    await user.save(); // Išsaugoti vartotoją į duomenų bazę
+    res.status(201).json(user); // Siųsti sukurtą vartotoją atgal
   } catch (error) {
-    res.status(400).json({ message: error.message }); // Handle errors
+    res.status(400).json({ message: error.message }); // Apdoroti klaidas
   }
 };
 
-// Update a user by ID
+// Atnaujinti vartotoją pagal ID
 const updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
-      req.params.id, // Find user by ID
-      req.body, // Update with new data
-      { new: true, runValidators: true } // Return the updated user and validate data
+      req.params.id, // Rasti vartotoją pagal ID
+      req.body, // Atnaujinti naujais duomenimis
+      { new: true, runValidators: true } // Grąžinti atnaujintą vartotoją ir patikrinti duomenų galiojimą
     );
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' }); // Handle case where user doesn't exist
+      return res.status(404).json({ message: 'Vartotojas nerastas' }); // Tvarkyti atvejį, kai vartotojas neegzistuoja
     }
-    res.status(200).json(user); // Send the updated user back
+    res.status(200).json(user); // Siųsti atnaujintą vartotoją atgal
   } catch (error) {
-    res.status(400).json({ message: error.message }); // Handle errors
+    res.status(400).json({ message: error.message }); // Apdoroti klaidas
   }
 };
 
-// Delete a user by ID
+// Ištrinti vartotoją pagal ID
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id); // Delete the user by ID
+    const user = await User.findByIdAndDelete(req.params.id); // Ištrinti vartotoją pagal ID
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' }); // Handle case where user doesn't exist
+      return res.status(404).json({ message: 'Vartotojas nerastas' }); // Tvarkyti atvejį, kai vartotojas neegzistuoja
     }
-    res.status(200).json({ message: 'User deleted successfully' }); // Return success message
+    res.status(200).json({ message: 'Vartotojas sėkmingai ištrintas' }); // Grąžinti sėkmės pranešimą
   } catch (error) {
-    res.status(500).json({ message: error.message }); // Handle errors
+    res.status(500).json({ message: error.message }); // Apdoroti klaidas
   }
 };
 

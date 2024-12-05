@@ -16,27 +16,26 @@ const NewUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     if (isNaN(user.age) || user.age <= 0) {
-      setError("Age must be a positive number.");
+      setError("Amžius turi būti teigiamas skaičius.");
       return;
     }
 
     try {
       await createNewUser({ ...user, age: parseInt(user.age, 10) });
-      alert("User created successfully!");
+      alert("Vartotojas sėkmingai sukurtas!");
       navigate("/users");
     } catch {
-      setError("Failed to create user. Please try again.");
+      setError("Nepavyko sukurti vartotojo. Prašome pabandyti dar kartą.");
     }
   };
 
   return (
     <div>
-      <h2>Create New User</h2>
+      <h2>Sukurti naują vartotoją</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
+          <label>Vardas:</label>
           <input
             type="text"
             name="name"
@@ -46,7 +45,7 @@ const NewUser = () => {
           />
         </div>
         <div>
-          <label>Email:</label>
+          <label>El. paštas:</label>
           <input
             type="email"
             name="email"
@@ -56,7 +55,7 @@ const NewUser = () => {
           />
         </div>
         <div>
-          <label>Age:</label>
+          <label>Amžius:</label>
           <input
             type="number"
             name="age"
@@ -66,14 +65,14 @@ const NewUser = () => {
           />
         </div>
         <button type="submit" style={{ marginRight: "10px", color: "green" }}>
-          Create User
+          Sukurti vartotoją
         </button>
         <button
           type="button"
           onClick={() => navigate(-1)}
           style={{ color: "red" }}
         >
-          Cancel
+          Atšaukti
         </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}

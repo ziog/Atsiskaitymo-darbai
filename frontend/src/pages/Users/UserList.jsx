@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchAllUsers } from "../../api/usersApi";
@@ -15,13 +14,13 @@ const UserList = () => {
         setLoading(false);
       })
       .catch(() => {
-        setError("Failed to fetch users.");
+        setError("Nepavyko gauti vartotojų.");
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <p>Loading users...</p>;
+    return <p>Kraunami vartotojai...</p>;
   }
 
   if (error) {
@@ -29,35 +28,35 @@ const UserList = () => {
   }
   return (
     <div>
-      <h2>User List</h2>
+      <h2>Vartotojų sąrašas</h2>
       <Link to="/users/new" style={{ color: "green", marginBottom: "10px" }}>
-        Add New User
+        Pridėti naują vartotoją
       </Link>
       {users.length > 0 ? (
         <ul>
           {users.map((user) => (
             <li key={user.id}>
               <p>
-                <strong>Name:</strong> {user.name} <br />
-                <strong>Email:</strong> {user.email}
+                <strong>Vardas:</strong> {user.name} <br />
+                <strong>El. paštas:</strong> {user.email}
               </p>
               <Link to={`/users/${user._id}`} style={{ marginRight: "10px" }}>
-                View Details
+                Peržiūrėti detales
               </Link>
               <Link
                 to={`/users/${user._id}/edit`}
                 style={{ marginRight: "10px", color: "orange" }}
               >
-                Edit
+                Redaguoti
               </Link>
               <Link to={`/users/${user._id}/delete`} style={{ color: "red" }}>
-                Delete
+                Ištrinti
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No users found.</p>
+        <p>Vartotojai nerasti.</p>
       )}
     </div>
   );

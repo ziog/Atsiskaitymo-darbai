@@ -1,18 +1,18 @@
 const API_URL_POSTS = import.meta.env.VITE_API_URL + "/posts";
 
-// Fetch posts for a specific user
+// Gauti įrašus specifiniam vartotojui
 export const fetchPosts = async (userId) => {
   const response = await fetch(`${API_URL_POSTS}?userId=${userId}`);
   return response.json();
 };
 
-// Fetch a specific post by ID
+// Gauti specifinį įrašą pagal ID
 export const fetchPostById = async (id) => {
   const response = await fetch(`${API_URL_POSTS}/${id}`);
   return response.json();
 };
 
-// Create a new post (ensure `post` includes `userId`)
+// Sukurti naują įrašą (įsitikinkite, kad `post` turi `userId`)
 export const createPost = async (post) => {
   const response = await fetch(API_URL_POSTS, {
     method: "POST",
@@ -22,7 +22,7 @@ export const createPost = async (post) => {
   return response.json();
 };
 
-// Update an existing post
+// Atnaujinti esamą įrašą
 export const updatePost = async (id, post) => {
   const response = await fetch(`${API_URL_POSTS}/${id}`, {
     method: "PUT",
@@ -32,7 +32,7 @@ export const updatePost = async (id, post) => {
   return response.json();
 };
 
-// Delete a post by ID
+// Ištrinti įrašą pagal ID
 export const deletePost = async (id) => {
   const response = await fetch(`${API_URL_POSTS}/${id}`, {
     method: "DELETE",

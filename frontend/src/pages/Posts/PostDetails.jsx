@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchPostById } from "../../api/postsApi";
 
 const PostDetails = () => {
   const params = useParams();
-  const id = params.id
-  const postId = params.postId
+  const id = params.id;
+  const postId = params.postId;
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,13 +18,13 @@ const PostDetails = () => {
         setLoading(false);
       })
       .catch((err) => {
-        setError("Failed to fetch the post.");
+        setError("Nepavyko gauti įrašo.");
         setLoading(false);
       });
   }, [postId]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Įkeliama...</p>;
   }
 
   if (error) {
@@ -33,23 +32,23 @@ const PostDetails = () => {
   }
 
   if (!post) {
-    return <p>Post not found.</p>;
+    return <p>Įrašas nerastas.</p>;
   }
 
   return (
     <div>
-      <h2>Post Details</h2>
+      <h2>Įrašo detalės</h2>
       <h3>{post.title}</h3>
       <p>{post.content}</p>
       <hr />
       <Link to={`/users/${id}/posts/${postId}/edit`} style={{ color: "blue", marginRight: "10px" }}>
-        Edit Post
+        Redaguoti įrašą
       </Link>
       <Link to={`/users/${id}/posts/${postId}/delete`} style={{ color: "red" }}>
-        Delete Post
+        Ištrinti įrašą
       </Link>
       <button onClick={() => navigate(-1)} style={{ marginTop: "10px" }}>
-        Back
+        Atgal
       </button>
     </div>
   );

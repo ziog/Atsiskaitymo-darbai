@@ -5,18 +5,19 @@ const {
   createPost,
   updatePost,
   deletePost,
-} = require('../controllers/postController'); // Import the controller
+} = require('../controllers/postController'); // Importuoti valdiklį
 
 const router = express.Router();
 
-// Routes for posts
+// Maršrutai įrašams
 router.route('/')
-  .get(getPosts) // Get all posts
-  .post(createPost); // Create a new post
+  .get(getPosts) // Gauti visus įrašus
+  .post(createPost); // Sukurti naują įrašą
 
 router.route('/:id')
-  .get(getPost) // Get a single post by ID
-  .put(updatePost) // Update a post by ID
-  .delete(deletePost); // Delete a post by ID
+  .get(getPost) // Gauti vieną įrašą pagal ID
+  .put(updatePost) // Atnaujinti įrašą pagal ID
+  .delete(deletePost); // Ištrinti įrašą pagal ID
 
 module.exports = router;
+

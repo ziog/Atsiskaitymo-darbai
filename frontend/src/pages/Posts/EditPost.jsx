@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchPostById, updatePost } from "../../api/postsApi";
 
 const EditPost = () => {
   const params = useParams();
-  const postId = params.postId
+  const postId = params.postId;
   const navigate = useNavigate();
 
   const [post, setPost] = useState({
@@ -22,7 +21,7 @@ const EditPost = () => {
         setLoading(false);
       })
       .catch((err) => {
-        setError("Failed to fetch the post.");
+        setError("Nepavyko gauti įrašo.");
         setLoading(false);
       });
   }, [postId]);
@@ -39,16 +38,16 @@ const EditPost = () => {
     e.preventDefault();
     try {
       await updatePost(postId, post);
-      alert("Post updated successfully!");
-      navigate(`/users/${params.id}/posts/${postId}`); 
+      alert("Įrašas sėkmingai atnaujintas!");
+      navigate(`/users/${params.id}/posts/${postId}`);
     } catch (error) {
-      console.error("Failed to update post:", error);
-      alert("An error occurred while updating the post.");
+      console.error("Nepavyko atnaujinti įrašo:", error);
+      alert("Įvyko klaida bandant atnaujinti įrašą.");
     }
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Kraunama...</p>;
   }
 
   if (error) {
@@ -57,10 +56,10 @@ const EditPost = () => {
 
   return (
     <div>
-      <h2>Edit Post</h2>
+      <h2>Redaguoti įrašą</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Pavadinimas</label>
           <input
             type="text"
             id="title"
@@ -71,7 +70,7 @@ const EditPost = () => {
           />
         </div>
         <div>
-          <label htmlFor="content">Body</label>
+          <label htmlFor="content">Turinys</label>
           <textarea
             id="content"
             name="content"
@@ -80,9 +79,9 @@ const EditPost = () => {
             required
           />
         </div>
-        <button type="submit">Update Post</button>
+        <button type="submit">Atnaujinti įrašą</button>
         <button type="button" onClick={() => navigate(-1)}>
-          Cancel
+          Atšaukti
         </button>
       </form>
     </div>

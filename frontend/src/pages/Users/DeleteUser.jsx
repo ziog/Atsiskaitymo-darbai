@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUserById } from "../../api/usersApi";
@@ -11,10 +10,10 @@ const DeleteUser = () => {
   const handleDelete = async () => {
     try {
       await deleteUserById(id);
-      alert("User deleted successfully!");
+      alert("Vartotojas sėkmingai ištrintas!");
       navigate("/users");
     } catch (error) {
-      alert("Failed to delete the user. Please try again.");
+      alert("Nepavyko ištrinti vartotojo. Prašome pabandyti dar kartą.");
     }
   };
 
@@ -24,13 +23,13 @@ const DeleteUser = () => {
 
   return (
     <div>
-      <h2>Delete User</h2>
-      <p>Are you sure you want to delete this user?</p>
+      <h2>Ištrinti vartotoją</h2>
+      <p>Ar tikrai norite ištrinti šį vartotoją?</p>
       <button onClick={handleDelete} style={{ marginRight: "10px", color: "red" }}>
-        Yes, Delete
+        Taip, ištrinti
       </button>
       <button onClick={handleCancel} style={{ color: "blue" }}>
-        Cancel
+        Atšaukti
       </button>
     </div>
   );

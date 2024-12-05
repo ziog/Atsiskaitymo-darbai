@@ -10,6 +10,6 @@ export default defineConfig({
   },
   server: {
     open: true,  // Open the browser on startup
-    port: 3000,  // Default port for Vite dev server
+    port: 3001,  // Default port for Vite dev server
   },
 });

@@ -17,21 +17,21 @@ export default function App() {
     <Router>
       <div>
         <nav>
-          <h1>React + API Task</h1>
+          <h1>React + API Užduotis</h1>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Pagrindinis puslapis</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/users">Vartotojai</Link>
             </li>
             <li>
-              <Link to="/users/new">Create User</Link>
+              <Link to="/users/new">Sukurti vartotoją</Link>
             </li>
           </ul>
         </nav>
         <Routes>
-          <Route path="/" element={<h2>Welcome to the React + API Task App</h2>} />
+          <Route path="/" element={<h2>Sveiki atvykę į React + API užduočių programą</h2>} />
           <Route path="/users" element={<UsersList />} />
           <Route path="/users/:id" element={<UserDetails />}>
             <Route path="posts" element={<PostList />} />

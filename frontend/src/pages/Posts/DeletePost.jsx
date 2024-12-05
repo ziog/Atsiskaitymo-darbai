@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { deletePost } from "../../api/postsApi";
@@ -8,28 +7,28 @@ const DeletePost = () => {
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    const confirm = window.confirm("Are you sure you want to delete this post?");
+    const confirm = window.confirm("Ar tikrai norite ištrinti šį įrašą?"); // Patvirtinimo langas
     if (confirm) {
       try {
         await deletePost(postId);
-        alert("Post deleted successfully!");
+        alert("Įrašas sėkmingai ištrintas!"); // Pranešimas apie sėkmingą ištrynimą
         navigate(`/users/${id}/posts`);
       } catch (error) {
-        console.error("Failed to delete post:", error);
-        alert("An error occurred while deleting the post.");
+        console.error("Nepavyko ištrinti įrašo:", error);
+        alert("Įvyko klaida bandant ištrinti įrašą."); // Klaidos pranešimas
       }
     }
   };
 
   return (
     <div>
-      <h2>Delete Post</h2>
-      <p>Are you sure you want to delete this post?</p>
+      <h2>Trinti įrašą</h2>
+      <p>Ar tikrai norite ištrinti šį įrašą?</p>
       <button onClick={handleDelete} style={{ color: "white", background: "red", padding: "10px" }}>
-        Delete
+        Ištrinti
       </button>
       <button onClick={() => navigate(-1)} style={{ marginLeft: "10px" }}>
-        Cancel
+        Atšaukti
       </button>
     </div>
   );

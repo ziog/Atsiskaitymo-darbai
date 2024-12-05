@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { createPost } from "../../api/postsApi";
@@ -25,20 +24,20 @@ const NewPost = () => {
     e.preventDefault();
     try {
       await createPost(post);
-      alert("Post created successfully!");
+      alert("Įrašas sėkmingai sukurtas!");
       navigate(`/users/${post.userId}/posts`); 
     } catch (error) {
-      console.error("Failed to create post:", error);
-      alert("An error occurred while creating the post.");
+      console.error("Nepavyko sukurti įrašo:", error);
+      alert("Įvyko klaida kuriant įrašą.");
     }
   };
 
   return (
     <div>
-      <h2>Create New Post</h2>
+      <h2>Sukurti naują įrašą</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Pavadinimas</label>
           <input
             type="text"
             id="title"
@@ -49,7 +48,7 @@ const NewPost = () => {
           />
         </div>
         <div>
-          <label htmlFor="body">Body</label>
+          <label htmlFor="body">Turinys</label>
           <textarea
             id="content"
             name="content"
@@ -58,9 +57,9 @@ const NewPost = () => {
             required
           />
         </div>
-        <button type="submit">Create Post</button>
+        <button type="submit">Sukurti įrašą</button>
         <button type="button" onClick={() => navigate(-1)}>
-          Cancel
+          Atšaukti
         </button>
       </form>
     </div>

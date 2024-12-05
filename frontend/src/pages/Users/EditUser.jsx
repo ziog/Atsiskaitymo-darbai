@@ -17,7 +17,7 @@ const EditUser = () => {
         setLoading(false);
       })
       .catch(() => {
-        setError("Failed to fetch user data.");
+        setError("Nepavyko gauti vartotojo duomenų.");
         setLoading(false);
       });
   }, [id]);
@@ -30,23 +30,22 @@ const EditUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     if (isNaN(user.age) || user.age <= 0) {
-      alert("Age must be a positive number.");
+      alert("Amžius turi būti teigiamas skaičius.");
       return;
     }
 
     try {
-      await updateUserById(id, { ...user, age: parseInt(user.age, 10) }); 
-      alert("User updated successfully!");
-      navigate(`/users/${id}`); 
+      await updateUserById(id, { ...user, age: parseInt(user.age, 10) });
+      alert("Vartotojas sėkmingai atnaujintas!");
+      navigate(`/users/${id}`);
     } catch {
-      alert("Failed to update user. Please try again.");
+      alert("Nepavyko atnaujinti vartotojo. Prašome pabandyti dar kartą.");
     }
   };
 
   if (loading) {
-    return <p>Loading user data...</p>;
+    return <p>Kraunami vartotojo duomenys...</p>;
   }
 
   if (error) {
@@ -55,10 +54,10 @@ const EditUser = () => {
 
   return (
     <div>
-      <h2>Edit User</h2>
+      <h2>Redaguoti vartotoją</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
+          <label>Vardas:</label>
           <input
             type="text"
             name="name"
@@ -68,7 +67,7 @@ const EditUser = () => {
           />
         </div>
         <div>
-          <label>Email:</label>
+          <label>El. paštas:</label>
           <input
             type="email"
             name="email"
@@ -78,7 +77,7 @@ const EditUser = () => {
           />
         </div>
         <div>
-          <label>Age:</label>
+          <label>Amžius:</label>
           <input
             type="number"
             name="age"
@@ -88,14 +87,14 @@ const EditUser = () => {
           />
         </div>
         <button type="submit" style={{ marginRight: "10px", color: "green" }}>
-          Save Changes
+          Išsaugoti pakeitimus
         </button>
         <button
           type="button"
           onClick={() => navigate(-1)}
           style={{ color: "red" }}
         >
-          Cancel
+          Atšaukti
         </button>
       </form>
     </div>
